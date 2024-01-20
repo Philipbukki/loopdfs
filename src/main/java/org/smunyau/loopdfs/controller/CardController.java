@@ -31,8 +31,8 @@ public class CardController {
             responseCode = "201",
             description = "HTTP STATUS CREATED"
     )
-    public ResponseEntity<Card> createCard(@RequestBody Card card){
-        return new ResponseEntity<>(cardService.createCard(card), HttpStatus.CREATED);
+    public ResponseEntity<Card> createCard(@RequestBody Card card, @RequestParam Long accountId){
+        return new ResponseEntity<>(cardService.createCard(card, accountId), HttpStatus.CREATED);
 
     }
     @Operation(

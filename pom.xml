@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.smunyau</groupId>
-    <artifactId>LoopDFS</artifactId>
+    <artifactId>loopdfs</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>LoopDFS</name>
     <description>LoopDFS</description>
@@ -62,6 +62,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <to>
+                        <image>smunyao/${project.artifactId}:v1</image>
+                    </to>
+                </configuration>
             </plugin>
         </plugins>
     </build>
