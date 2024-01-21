@@ -12,6 +12,11 @@ import org.smunyau.loopdfs.utilities.CardType;
 @Table(name="cards")
 @NoArgsConstructor
 @Getter @Setter
+@Schema(
+        name = "Cards",
+        description = "Table holding Card Details"
+
+)
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/loopdfs
-    username: springstudent
-    password: springstudent
+    url: jdbc:mysql://localhost:3307/loopdfs
+    username: root
+    password: root
 
   jpa:
     properties:

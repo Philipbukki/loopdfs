@@ -1,33 +1,33 @@
 version: '3'
+
 services:
-  loopDFS:
+
+  loopdfs:
     image: "smunyao/loopdfs:v1"
     container_name: "loopdfs_service"
     ports:
       - 8080:8080
     networks:
       - smunyao
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/loopdfs
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
     depends_on:
       - mysql
-    environment:
-      MYSQL_HOST: mysql
-      MYSQL_PORT: 3308
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: loopDFS
 
   mysql:
     image: "mysql:latest"
-    container_name: "loopDFS"
+    container_name: "loopdfs_mysql"
     ports:
-      - 3308:3306
+      - 3307:3306
     networks:
       - smunyao
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loopDFS
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: loopdfs
+
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 networks:
   smunyao:

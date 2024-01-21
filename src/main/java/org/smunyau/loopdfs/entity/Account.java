@@ -12,13 +12,22 @@ import java.util.List;
 @Table(name="accounts")
 @NoArgsConstructor
 @Getter @Setter
+@Schema(
+        name = "Accounts",
+        description = "Table holding Account Details"
+
+)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(hidden = true)
+    @Column(name = "account_id")
     private Long accountId;
+    @Column(name = "iban")
     private String iban;
+    @Column(name = "bic_swift")
     private String bicSwift;
+    @Column(name = "client_id")
     private Long clientId;
     @JsonManagedReference
     @Schema(hidden = true)

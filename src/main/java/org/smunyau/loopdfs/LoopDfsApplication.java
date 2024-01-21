@@ -19,7 +19,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                         email = "loop.dfs@gmail.com",
                         url = "loopdfs.com"
                 )
-
         ),
         externalDocs = @ExternalDocumentation(
                 description = "Learn more about springdoc-openapi",
