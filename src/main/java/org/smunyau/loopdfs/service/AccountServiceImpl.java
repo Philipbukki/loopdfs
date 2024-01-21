@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService{
     public Account updateAccount(Long accountId, Account account) {
 
         Account accountToUpdate = accountRepository.findById(accountId).orElseThrow(
-                ()-> new ResourceNotFoundException(Account.class.getName(),"accountId",accountId)
+                ()-> new ResourceNotFoundException("Account","accountId",accountId)
         );
 
         accountToUpdate.setIban(account.getIban());
@@ -44,7 +44,10 @@ public class AccountServiceImpl implements AccountService{
     }
     @Override
     public boolean deleteAccount(Long accountId) {
-        accountRepository.deleteById(accountId);
+        Account account = accountRepository.findById(accountId).orElseThrow(
+                ()-> new ResourceNotFoundException("Account","id",accountId)
+        );
+        accountRepository.delete(account);
         return true;
     }
     public List<Card> getCardsByAccountId(Long accountId, Long clientId){

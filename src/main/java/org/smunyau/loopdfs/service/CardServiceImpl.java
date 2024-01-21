@@ -37,7 +37,10 @@ public class CardServiceImpl implements CardService{
     }
     @Override
     public boolean deleteCard(Long cardId) {
-        cardRepository.deleteById(cardId);
+       Card card = cardRepository.findById(cardId).orElseThrow(
+               ()-> new ResourceNotFoundException("Card","id",cardId)
+       );
+       cardRepository.delete(card);
         return true;
     }
 }

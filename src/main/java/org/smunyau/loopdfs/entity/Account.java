@@ -31,7 +31,7 @@ public class Account {
     private Long clientId;
     @JsonManagedReference
     @Schema(hidden = true)
-    @OneToMany(mappedBy = "account",cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "account", cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST})
     private List<Card> cards;
 
 
