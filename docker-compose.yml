@@ -3,7 +3,7 @@ version: '3'
 services:
 
   loopdfs:
-    image: "smunyao/loopdfs:v1"
+    image: "smunyao/loopdfs:v2"
     container_name: "loopdfs_service"
     ports:
       - 8080:8080

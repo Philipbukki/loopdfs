@@ -69,7 +69,7 @@
                 <version>3.4.0</version>
                 <configuration>
                     <to>
-                        <image>smunyao/${project.artifactId}:v1</image>
+                        <image>smunyao/${project.artifactId}:v2</image>
                     </to>
                 </configuration>
             </plugin>
