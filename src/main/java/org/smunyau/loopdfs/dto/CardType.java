@@ -1,4 +1,4 @@
-package org.smunyau.loopdfs.utilities;
+package org.smunyau.loopdfs.dto;
 
 public enum CardType {
     VIRTUAL,

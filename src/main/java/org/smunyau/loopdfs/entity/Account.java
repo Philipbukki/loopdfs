@@ -34,5 +34,4 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST})
     private List<Card> cards;
 
-
 }

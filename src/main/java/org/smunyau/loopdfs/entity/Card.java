@@ -1,12 +1,11 @@
 package org.smunyau.loopdfs.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.smunyau.loopdfs.utilities.CardType;
+import org.smunyau.loopdfs.dto.CardType;
 
 @Entity
 @Table(name="cards")

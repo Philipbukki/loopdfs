@@ -1,11 +1,18 @@
 package org.smunyau.loopdfs.service;
 
 import lombok.AllArgsConstructor;
+import org.hibernate.query.SortDirection;
+import org.smunyau.loopdfs.dto.AccountResponseDto;
 import org.smunyau.loopdfs.entity.Account;
 import org.smunyau.loopdfs.entity.Card;
 import org.smunyau.loopdfs.exception.ResourceNotFoundException;
 import org.smunyau.loopdfs.exception.UnAuthorizedClientException;
 import org.smunyau.loopdfs.repository.AccountRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,8 +34,24 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
+    public AccountResponseDto getAccounts(int pageNo, int pageSize, String sortBy, String sortDir) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortBy).ascending():
+                Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(pageNo,pageSize, sort);
+
+        Page<Account> accounts = accountRepository.findAll(pageable);
+        AccountResponseDto responseDto = new AccountResponseDto();
+
+        responseDto.setContent(accounts.getContent());
+        responseDto.setPageNo(accounts.getNumber());
+        responseDto.setPageSize(accounts.getSize());
+        responseDto.setTotalElements(accounts.getTotalElements());
+        responseDto.setTotalPages(accounts.getTotalPages());
+        responseDto.setLast(accounts.isLast());
+
+
+        return responseDto;
+
     }
 
     @Override
