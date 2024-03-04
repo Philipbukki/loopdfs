@@ -1,5 +1,6 @@
 package org.smunyau.loopdfs.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -20,7 +21,8 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "card_id", updatable = false)
-    @Schema(hidden = true)
+//    @Schema(hidden = true)
+    @JsonIgnore
     private Long cardId;
     @Column(name = "card_name")
     private String cardName;
