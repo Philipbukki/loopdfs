@@ -2,6 +2,7 @@ package org.smunyau.loopdfs.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.smunyau.loopdfs.dto.AccountResponseDto;
 import org.smunyau.loopdfs.entity.Account;
@@ -36,7 +37,7 @@ public class AccountController {
     )
 
     @PostMapping
-    public ResponseEntity<Account> createAccount(Account account) {
+    public ResponseEntity<Account> createAccount(@Valid Account account) {
         return ResponseEntity
                 .status(HttpStatus.CREATED.value())
                 .body(accountService.createAccount(account));

@@ -1,7 +1,10 @@
 package org.smunyau.loopdfs.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,11 +23,13 @@ import java.util.List;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(hidden = true)
+//    @Schema(hidden = true)
+    @JsonIgnore
     @Column(name = "account_id")
     private Long accountId;
     @Column(name = "iban")
     private String iban;
+    @NotBlank
     @Column(name = "bic_swift")
     private String bicSwift;
     @Column(name = "client_id")
