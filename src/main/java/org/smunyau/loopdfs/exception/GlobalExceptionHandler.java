@@ -3,7 +3,6 @@ package org.smunyau.loopdfs.exception;
 import org.smunyau.loopdfs.dto.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,7 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponseDto> handleResourceNotFoundException(
             ResourceNotFoundException ex, WebRequest webRequest){
-        ErrorResponseDto error = ErrorResponseDto.build(LocalDateTime.now(), HttpStatus.UNAUTHORIZED.value(),ex.getMessage()
+        ErrorResponseDto error = ErrorResponseDto.build(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(),ex.getMessage()
                 ,webRequest.getDescription(false));
 
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);

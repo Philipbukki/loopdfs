@@ -27,6 +27,7 @@ public class Card {
     @Column(name = "card_name")
     private String cardName;
     @Column(name = "card_type", updatable = false)
+    @Enumerated(EnumType.STRING)
     private CardType cardType;
     @Schema(hidden = true)
     @JsonBackReference
