@@ -23,18 +23,21 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService{
 
     private AccountRepository accountRepository;
+
     @Override
-    public Account createAccount(Account account) {
+    public Account createAccount(Account account)
+    {
         if(account.getCards() == null){
             account.setCards(new ArrayList<>());
-
         }
+
         return accountRepository.save(account);
 
     }
 
     @Override
-    public AccountResponseDto getAccounts(int pageNo, int pageSize, String sortBy, String sortDir) {
+    public AccountResponseDto getAccounts(int pageNo, int pageSize, String sortBy, String sortDir)
+    {
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortBy).ascending():
                 Sort.by(sortBy).descending();
         Pageable pageable = PageRequest.of(pageNo,pageSize, sort);
@@ -55,7 +58,8 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public Account updateAccount(Long accountId, Account account) {
+    public Account updateAccount(Long accountId, Account account)
+    {
 
         Account accountToUpdate = accountRepository.findById(accountId).orElseThrow(
                 ()-> new ResourceNotFoundException("Account","accountId",accountId)
@@ -66,14 +70,16 @@ public class AccountServiceImpl implements AccountService{
         return accountRepository.save(accountToUpdate);
     }
     @Override
-    public boolean deleteAccount(Long accountId) {
+    public boolean deleteAccount(Long accountId)
+    {
         Account account = accountRepository.findById(accountId).orElseThrow(
                 ()-> new ResourceNotFoundException("Account","id",accountId)
         );
         accountRepository.delete(account);
         return true;
     }
-    public List<Card> getCardsByAccountId(Long accountId, Long clientId){
+    public List<Card> getCardsByAccountId(Long accountId, Long clientId)
+    {
         Account account = accountRepository.findById(accountId).orElseThrow(
                 ()->new ResourceNotFoundException("Account","accountId",accountId)
         );

@@ -1,6 +1,7 @@
 package org.smunyau.loopdfs.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -66,10 +67,17 @@ public class AccountController {
             summary = "Get Account Cards Endpoint",
             description = "Gets a List of Cards for a specific Account"
     )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP STATUS OK"
-    )
+
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP STATUS OK"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "HTTP STATUS NOT_FOUND"
+            )
+    })
     @GetMapping("/{accountId}/cards")
     public ResponseEntity<List<Card>> getCardsByAccountId(@PathVariable Long accountId, @RequestParam Long clientId) {
         return ResponseEntity.ok(accountService.getCardsByAccountId(accountId, clientId));
@@ -79,10 +87,17 @@ public class AccountController {
             summary = "Update Account Endpoint",
             description = "Updates an existing account"
     )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP STATUS OK"
-    )
+
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "HTTP STATUS OK"
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "HTTP STATUS NOT_FOUND"
+        )
+    })
     @PutMapping("/{accountId}")
     public ResponseEntity<Account> updateAccount(@PathVariable Long accountId, @RequestBody Account account) {
         return ResponseEntity.ok(accountService.updateAccount(accountId, account));
@@ -92,10 +107,18 @@ public class AccountController {
             summary = "Delete Account Endpoint",
             description = "Deletes an existing account"
     )
-    @ApiResponse(
-            responseCode = "200",
-            description = "HTTP STATUS OK"
-    )
+
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "HTTP STATUS OK"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "HTTP STATUS NOT_FOUND"
+            )
+    })
+
     @DeleteMapping("/{accountId}")
     public ResponseEntity<String> deleteAccount(@PathVariable Long accountId) {
         boolean isDeleted = accountService.deleteAccount(accountId);
